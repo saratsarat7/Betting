@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>Completed Matches</h1>
+<table border="1">
+<?php  
+      $row = $result_match->fetch_assoc();	
+	  $prev_match_id = 0 ;
+?>
+<?php for($x = 0; $x < $result_match_count ; $x++) {  
+
+      if ($prev_match_id != $row["match_id"]) { 
+?>
+</table>
+<h1></h1>
+<h1></h1>
+<?php 
+            echo "Match ";
+            echo $row["match_id"];
+            echo " on ";
+            echo $row["time"];
+            echo " IST.";
+			echo " for $";
+			echo $row["bet_amount"];
+			$prev_match_id = $row["match_id"];   
+?>
+<h1></h1>
+<table border="1">
+<tr>
+  <td></td>
+  <?php if ($row["team1"] == $row["team_win_id"] ) 
+            { echo '<td bgcolor="ADFF2F">' ;}  
+        else { echo '<td bgcolor="FFA500">' ;}  
+        echo $row["team1"]."</td>" ;
+		
+        if ($row["team2"] == $row["team_win_id"] ) 
+            { echo '<td bgcolor="ADFF2F">' ;}  
+        else { echo '<td bgcolor="FFA500">' ;}  
+        echo $row["team2"]."</td>" ;
+		?>
+</tr>
+
+<?php  } ?>
+<tr>
+	<?php         
+		if ($row["win_loss_amt"] > 0) { echo '<td  bgcolor="ADFF2F">'.$row["user"].'</td>' ;}
+		if ($row["win_loss_amt"] == 0) { echo '<td  bgcolor="FFFFFF">'.$row["user"].'</td>' ;}
+		if ($row["win_loss_amt"] < 0) { echo '<td  bgcolor="FFA500">'.$row["user"].'</td>' ;}		
+
+	    if ($row["team1"] == $row["team_id"] ) {
+			if ($row["win_loss_amt"] > 0)  { echo '<td  align="center" bgcolor="ADFF2F">'.$row["win_loss_amt"].'</td>' ;}
+			if ($row["win_loss_amt"] == 0) { echo '<td  align="center" bgcolor="FFFFFF">'.$row["win_loss_amt"].'</td>' ;}
+			if ($row["win_loss_amt"] < 0)  { echo '<td  align="center" bgcolor="FFA500">'.$row["win_loss_amt"].'</td>' ;}		
+		}
+		else {
+		     echo "<td></td>" ;}	
+
+		if ($row["team2"] == $row["team_id"] ) {
+			if ($row["win_loss_amt"] > 0)  { echo '<td  align="center" bgcolor="ADFF2F">'.$row["win_loss_amt"].'</td>' ;}
+			if ($row["win_loss_amt"] == 0) { echo '<td  align="center" bgcolor="FFFFFF">'.$row["win_loss_amt"].'</td>' ;}
+			if ($row["win_loss_amt"] < 0)  { echo '<td  align="center" bgcolor="FFA500">'.$row["win_loss_amt"].'</td>' ;}		
+			}
+		else {
+		     echo "<td></td>" ;}	
+
+	?>
+</tr>
+<?php  
+      $row = $result_match->fetch_assoc();	
+?>
+<?php } ?>
+</table>
+<h1></h1>
+<h1></h1>
+</html>

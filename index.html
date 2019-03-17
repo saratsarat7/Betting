@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h2>Login</h2>
+
+<form action="/PHP/betting/Upload/index.php" method="post">
+    <div class="imgcontainer">
+        <img src="IPL2019.jpg" alt="Avatar" class="avatar">
+    </div>
+    <!-- <span class="psw"><a href="#">Forgot password?</a></span> -->
+    
+    <!-- <span class="psw"><a href="/signup.php">Sign Up</a></span> -->
+    
+    <div class="container">
+        <label for="uname"><b>Username</b></label>
+        <input type="text" placeholder="Enter Username" name="uname" required value = <?php echo $user_name;?>>
+
+        <label for="psw"><b>Pin</b></label>
+        <input type="password" placeholder="Enter Your Pin" name="pin" required>
+        <div>
+            <?php echo $err; ?>
+        </div>
+
+        <button type="submit">Login</button>
+        <!-- <label>
+            <input type="checkbox" name="remember" value="Y"> Remember me
+        </label> -->
+    </div>
+</form>
+
+
+
+<?php if ( date('Y-m-d') < "2019-03-21")  { ?>
+
+	<h2>Sign Up</h2>
+
+	<form action="/PHP/betting/Upload/index.php" method="post">
+		<div class="container">
+			<label for="suname"><b>Username</b></label>
+			<input type="text" placeholder="Enter Username" name="suname" required>
+
+			<label for="psw"><b>Pin</b></label>
+			<input type="password" placeholder="Enter Your Password" name="spin1" required>
+
+			<label for="psw"><b>Confirm Pin</b></label>
+			<input type="password" placeholder="Confirm Your Password" name="spin2" required>
+
+			<button type="submit">Sign Up</button>
+		</div>
+	</form>
+<?php } ?>
+
+</body>
+</html>

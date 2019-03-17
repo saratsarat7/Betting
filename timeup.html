@@ -1,0 +1,40 @@
+<p>You selection is indicated by *</p
+<div style="pointer-events: none;"> 
+    <form action="/PHP/betting/Upload/bet.php" method="post" >
+        <!-- <input type="number" min="1" max="50" placeholder="Bet Amount" name="bet_amt" required> -->
+        <button type="submit" name="select_data" style="background-color:#F4C430;color:black;pointer-events: none;"
+        class=<?php 
+                $a1 = decideButton($bet_row["team_id"], $row["team1"]);
+                ?> 
+        value = <?php echo $row["match_id"];
+                    echo "%";
+                    echo getTeamID($row["team1"]); ?>>
+            <?php
+                echo $row["team1"];
+                if ($a1 == true) {
+                    echo " - *";
+                }
+            ?>        
+        </button>
+    </form>
+    <div align="center">
+            <img src="/PHP/betting/Upload/flag.jpg" alt="">
+    </div>
+    <form action="/PHP/betting/Upload/bet.php" method="post" >
+        <!-- <input type="number" min="1" max="50" placeholder="Bet Amount" name="bet_amt" required> -->
+        <button type="submit" name="select_data" style="background-color:green;pointer-events: none;"
+        class=<?php 
+                $a1 = decideButton($bet_row["team_id"], $row["team2"]);
+                ?> 
+        value = <?php echo $row["match_id"];
+                    echo "%";
+                    echo getTeamID($row["team2"]); ?>>
+            <?php
+                echo $row["team2"];
+                if ($a1 == true) {
+                    echo " - *";
+                }
+            ?>        
+        </button>
+    </form>
+</div>

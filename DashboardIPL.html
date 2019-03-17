@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1> IPL Dashboard </h1>
+<table border="1">
+
+<?php for($x = 0; $x < $result_match_count ; $x++) {  
+      $row = $result_match->fetch_assoc();	
+?>	
+ <tr <?php if ($row["tot_win_loss_amt"] > 0 )  {echo 'bgcolor="ADFF2F"' ;} 
+           if ($row["tot_win_loss_amt"] == 0 ) {echo 'bgcolor="FFFFFF"';} 
+           if ($row["tot_win_loss_amt"] < 0 )  {echo 'bgcolor="FFA500"' ;} 
+
+     ?>>
+  <td> <?php echo $row["user"]?></td>
+  <td> <?php echo $row["tot_win_loss_amt"] ?></td>
+ </tr>
+<?php } ?>  
+</table>
+<h1></h1>
+<h1></h1>
+</html>
