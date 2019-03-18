@@ -45,7 +45,6 @@ button {
   width: 100%;
 }
 
-
 button:hover {
   opacity: 0.8;
 }
@@ -83,7 +82,7 @@ img.avatar2 {
   border-radius: 10%;
 }
 
-img.	 {
+img {
   width: 50%;
   height: 50%;
   border-radius: 30%;
@@ -125,4 +124,33 @@ span.psw {
      display: block;
      float: none;
   }
+}
+
+/* Style the collapsible content.*/
+.line {
+  width:90%;
+}
+.line:after {
+  content:'';
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 7px 0;
+  border-color: #FFFFFF transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  top: 8px;
+  left: 45%;
+}
+.line:before {
+  content:'';
+  position: absolute;
+  border-style: solid;
+  border-width: 7px 7px 0;
+  border-color: #7F7F7F transparent;
+  display: block;
+  width: 0;
+  z-index: 1;
+  top: 9px;
+  left: 45%;
 }

@@ -1,70 +1,78 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-</head>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head> -->
 <body>
-<h1>Running Matches</h1>
-<table border="1">
-<?php  
-      $row = $result_match->fetch_assoc();	
-	  $prev_match_id = 0 ;
-?>
-<?php for($x = 0; $x < $result_match_count ; $x++) {  
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#betdetail">
+	<h1>Running Matches</h1>
+</button>
+<div id="betdetail" class="collapse in"  aria-expanded="true">
+	<table border="1">
+	<?php  
+		$row = $result_match->fetch_assoc();	
+		$prev_match_id = 0 ;
+	?>
+	<?php for($x = 0; $x < $result_match_count ; $x++) {  
 
-      if ($prev_match_id != $row["match_id"]) { 
-?>
-</table>
-<h1></h1>
-<h1></h1>
-<?php 
-            echo "Match ";
-            echo $row["match_id"];
-            echo " on ";
-            echo $row["time"];
-            echo " IST.";
-			echo " for $";
-			echo $row["bet_amount"];
-			$prev_match_id = $row["match_id"];   
-?>
-<h1></h1>
-<table border="1">
-<tr>
-  <td></td>
-  <td><?php echo $row["team1"]?></td> 
-  <td><?php echo $row["team2"]?></td> 
-</tr>
+		if ($prev_match_id != $row["match_id"]) { 
+	?>
+	</table>
+	<h1></h1>
+	<h1></h1>
+	<?php 
+				echo "Match ";
+				echo $row["match_id"];
+				echo " on ";
+				echo $row["time"];
+				echo " IST.";
+				echo " for $";
+				echo $row["bet_amount"];
+				$prev_match_id = $row["match_id"];   
+	?>
+	<h1></h1>
+	<table border="1">
+	<tr>
+	<td></td>
+	<td><?php echo $row["team1"]?></td> 
+	<td><?php echo $row["team2"]?></td> 
+	</tr>
 
-<?php  } ?>
-<tr>
-    <td>
-	     <?php echo $row["user"] ?>
-	</td>
-    <td align="center">
-	     <?php 
-		 if ($row["team1"] == $row["team_id"] ) {
-		      echo $row["team1winshare"];
-			}
-		 else {
-		     echo " " ;}
-		 ?>
-	</td>	
-    <td align="center">
-	     <?php 
-		 if ($row["team2"] == $row["team_id"] ) {
-    		      echo $row["team2winshare"];
-			   }
-		 else {
-		     echo " " ;}
-		 ?>
-	</td>	
-</tr>
-<?php  
-      $row = $result_match->fetch_assoc();	
-?>
-<?php } ?>
-</table>
-<h1></h1>
-<h1></h1>
+	<?php  } ?>
+	<tr>
+		<td>
+			<?php echo $row["user"] ?>
+		</td>
+		<td align="center">
+			<?php 
+			if ($row["team1"] == $row["team_id"] ) {
+				echo $row["team1winshare"];
+				}
+			else {
+				echo " " ;}
+			?>
+		</td>	
+		<td align="center">
+			<?php 
+			if ($row["team2"] == $row["team_id"] ) {
+					echo $row["team2winshare"];
+				}
+			else {
+				echo " " ;}
+			?>
+		</td>	
+	</tr>
+	<?php  
+		$row = $result_match->fetch_assoc();	
+	?>
+	<?php } ?>
+	</table>
+	<h1></h1>
+	<h1></h1>
+</div>
+</body>
 </html>

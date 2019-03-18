@@ -1,5 +1,6 @@
 <?php
 
+$date_match = '2019-03-23' ; 
 // if (isset($_COOKIE["remember"]) || isset($_COOKIE["logged_in"]) == 'YES'){
 if (isset($_COOKIE["logged_in"]) == 'YES'){
     //TODO
@@ -31,7 +32,6 @@ if(isset($_POST['uname']) && isset($_POST['pin']) == 'Yes') {
 	
    
 	if ($result_count > 1) {
-
         echo "Error more rows.";
     } else {
         $sql_pin = $result_row["pin"];
@@ -70,11 +70,11 @@ else
 		{
 			$user_id = rand(000000000,	999999999);
 
-			$sql = "INSERT INTO `id8692792_betting`.`login_info`(`user`, `user_id`, `pin`) 
+			$sql = "INSERT INTO `id8692792_betting`.`slogin_info`(`user`, `user_id`, `pin`) 
 					VALUES ('$user_name','$user_id','$user_pin1')";
 
 			if ($conn->query($sql) === TRUE) {
-				echo 'Signed up succesfully, re-enter to log in' ;
+				echo 'Signed up succesfully, re-enter after '. $date_match. ' to log in' ;
 			} else {
 				echo "Error: " . "<br>" . $conn->error;
 			}

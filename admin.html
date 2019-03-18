@@ -1,0 +1,88 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head> -->
+<body>
+
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#admin">
+    <h1>Available Matches</h1>
+</button>
+<div id="admin" class="collapse in"  aria-expanded="true">
+    <?php for($x = 0; $x < $result_match_count; $x++) { ?>
+        <div >
+            <?php  
+                $row = $result_match->fetch_assoc();	
+                echo "Match ";
+                echo $row["match_id"];
+                echo " on ";
+                echo $row["time"];
+                echo " IST.";
+                echo " for $";
+                echo $row["bet_amount"];
+            ?>
+            <h1></h1>
+            <form action="/PHP/betting/Upload/bet.php"  method="post" >
+                <!-- <input type="number" min="1" max="50" placeholder="Bet Amount" name="bet_amt" required> -->
+                <button type="submit" name="select_data" 
+                class=<?php 
+                            echo "buttongreen"; 
+                        ?> 
+                value = <?php echo $row["match_id"] ;
+                            echo "%";
+                            echo str_replace(" ", "_", $row["team1"]);  
+                        ?>>
+                    <?php 
+                        echo $row["team1"] ;
+                        if ($row["team_id"] == $row["team1"] )
+                            { echo " - *";}
+                        if ($row["team_win_id"] == $row["team1"])
+                            { echo " - w";}						
+                    ?>          
+                </button>
+            </form>
+
+            <form action="/PHP/betting/Upload/bet.php"  method="post" >
+                <!-- <input type="number" min="1" max="50" placeholder="Bet Amount" name="bet_amt" required> -->
+                <button type="submit" name="select_data" 
+                class=<?php 
+                            echo "buttonwhite"; 
+                        ?> 
+                value = <?php echo $row["match_id"] ;
+                            echo "%";
+                            echo "%";  
+                        ?>>
+                    <?php 
+                        { echo " No Result";}						
+                    ?>          
+                </button>
+            </form>
+
+            <form action="/PHP/betting/Upload/bet.php"  method="post" >
+                <!-- <input type="number" min="1" max="50" placeholder="Bet Amount" name="bet_amt" required> -->
+                <button type="submit" name="select_data" 			
+                class=<?php 
+                            echo "buttonorange"; 		
+                        ?> 
+                value = <?php echo $row["match_id"] ;
+                            echo "%";
+                            echo str_replace(" ", "_", $row["team2"]); ?>>
+                    <?php 
+                        echo $row["team2"] ;
+                        
+                        if ($row["team_id"] == $row["team2"] )
+                            { echo " - *";}
+                        if ($row["team_win_id"] == $row["team2"])
+                            { echo " - w";}												
+                    ?>   
+            </form>
+        </div>
+        <br>
+    <?php } ?>
+</div>
+</body> 
+</html>

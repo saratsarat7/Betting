@@ -16,7 +16,7 @@ if(isset($_POST['suname']) && isset($_POST['spin1']) && isset($_POST['spin2']) )
 
 		if ($conn->query($sql) === TRUE) {
 			header('Location: /PHP/betting/Upload/index.php') ;
-			echo 'Signed up succesfully, re-enter to log in'
+			echo 'Signed up succesfully, re-enter to log in';
 		} else {
 			echo "Error: " . "<br>" . $conn->error;
 		}

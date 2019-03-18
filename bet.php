@@ -6,9 +6,10 @@ if (!isset($_COOKIE["logged_in"]) == 'N'){
 }
 
 include 'dbconnect.php';
+
+include 'header.html';
 	
 $user_id = $_COOKIE["user_id"];
-$user_name = $_COOKIE["user_name"];
 $db = "'id8692792_betting'" ;
 $match_info = "id8692792_betting.match_info" ;
 $bet_info = "id8692792_betting.bet_info" ;
@@ -93,7 +94,7 @@ if ($user_id  == 1334567342 )
 
 	if ($result_match_count > 0)
 	{
-	include 'Admin.html';
+		include 'admin.html';
 	}
 }
 else
@@ -129,7 +130,7 @@ $allbet_sql = "select allbet.*
 			  end as loss_amt		  
 			   from 
 				(SELECT a.match_id, a.team1, a.team2, a.time, b.team_id, a.team_win_id, a.bet_amount 
-						   ,c.user 
+						   ,c.user, c.user_id 
 						   FROM $match_info a inner join $bet_info b inner join $login_info c
 							where a.match_id = b.match_id 
 							  and b.user_id = c.user_id
@@ -166,7 +167,7 @@ $allbet_sql = "select allbet.*
 
 	$sql = "$allbet_sql
 			where team_win_id <> ''
-			  and user = '$user_name' 
+			  and user_id = '$user_id' 
 			  order by match_id" ;
 
 	$result_match = $conn->query($sql);
@@ -204,6 +205,9 @@ $allbet_sql = "select allbet.*
 	if ($result_match_count > 0)
 	{ include 'completedbet.html'; }
 }
-
+if ($user_id  == 1334567342 ) 
+{
+	include 'upload.html';
+}
 include 'logout.html';
 ?>

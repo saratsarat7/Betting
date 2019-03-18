@@ -1,63 +1,78 @@
-<h1>Completed Matches</h1>
-
-<?php for($x = 0; $x < $result_completed_count; $x++) { ?>
-    <div>
-        <h3>
-            <?php 
-                $row_completed = $result_completed->fetch_assoc();
-                $bet_row = $result_user_bet->fetch_assoc();
-            ?>
-        </h3>
-    </div>
-    <div >
-        <?php   echo "Match ";
-            echo $row_completed["match_id"];
-            if (findWinner($conn, $row_completed["match_id"], $user_id) == 1) {
-                echo " - Your team won the match";
-            } else {
-                echo " - Your team lost the match";
-            }
-        ?>
-        <p>You selection is indicated by *</p>
-        <div style="pointer-events: none;"> 
-            <form action="/PHP/betting/Upload/bet.php" method="post" >
-                <!-- <input type="number" min="1" max="50" placeholder="Bet Amount" name="bet_amt" required> -->
-                <button type="submit" name="select_data" style="background-color:#F4C430;color:black"
-                class=<?php 
-                        $a1 = decideButton($bet_row["team_id"], $row_completed["team1"]);
-                        ?> 
-                value = <?php echo $row_completed["match_id"];
-                            echo "%";
-                            echo getTeamID($row_completed["team1"]); ?>>
-                    <?php
-                        echo $row_completed["team1"];
-                        if ($a1 == true) {
-                            echo " - *";
-                        }
-                    ?>        
-                </button>
-            </form>
-            <div align="center">
-                    <img src="/PHP/betting/Upload/flag.jpg" alt="">
-            </div>
-            <form action="/PHP/betting/Upload/bet.php" method="post" >
-                <!-- <input type="number" min="1" max="50" placeholder="Bet Amount" name="bet_amt" required> -->
-                <button type="submit" name="select_data" style="background-color:green"
-                class=<?php 
-                        $a1 = decideButton($bet_row["team_id"], $row_completed["team2"]);
-                        ?> 
-                value = <?php echo $row_completed["match_id"];
-                            echo "%";
-                            echo getTeamID($row_completed["team2"]); ?>>
-                    <?php
-                        echo $row_completed["team2"];
-                        if ($a1 == true) {
-                            echo " - *";
-                        }
-                    ?>        
-                </button>
-            </form>
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head> -->
+<body>
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#completed">
+    <h1>Completed Matches</h1> 
+</button>
+<div id="completed" class="collapse in"  aria-expanded="true">
+    <?php for($x = 0; $x < $result_completed_count; $x++) { ?>
+        <div>
+            <h3>
+                <?php 
+                    $row_completed = $result_completed->fetch_assoc();
+                    $bet_row = $result_user_bet->fetch_assoc();
+                ?>
+            </h3>
         </div>
-    </div>
-<br>
-<?php } ?>
+        <div >
+            <?php   echo "Match ";
+                echo $row_completed["match_id"];
+                if (findWinner($conn, $row_completed["match_id"], $user_id) == 1) {
+                    echo " - Your team won the match";
+                } else {
+                    echo " - Your team lost the match";
+                }
+            ?>
+            <p>You selection is indicated by *</p>
+            <div style="pointer-events: none;"> 
+                <form action="/PHP/betting/Upload/bet.php" method="post" >
+                    <!-- <input type="number" min="1" max="50" placeholder="Bet Amount" name="bet_amt" required> -->
+                    <button type="submit" name="select_data" style="background-color:#F4C430;color:black"
+                    class=<?php 
+                            $a1 = decideButton($bet_row["team_id"], $row_completed["team1"]);
+                            ?> 
+                    value = <?php echo $row_completed["match_id"];
+                                echo "%";
+                                echo getTeamID($row_completed["team1"]); ?>>
+                        <?php
+                            echo $row_completed["team1"];
+                            if ($a1 == true) {
+                                echo " - *";
+                            }
+                        ?>        
+                    </button>
+                </form>
+                <div align="center">
+                        <img src="/PHP/betting/Upload/flag.jpg" alt="">
+                </div>
+                <form action="/PHP/betting/Upload/bet.php" method="post" >
+                    <!-- <input type="number" min="1" max="50" placeholder="Bet Amount" name="bet_amt" required> -->
+                    <button type="submit" name="select_data" style="background-color:green"
+                    class=<?php 
+                            $a1 = decideButton($bet_row["team_id"], $row_completed["team2"]);
+                            ?> 
+                    value = <?php echo $row_completed["match_id"];
+                                echo "%";
+                                echo getTeamID($row_completed["team2"]); ?>>
+                        <?php
+                            echo $row_completed["team2"];
+                            if ($a1 == true) {
+                                echo " - *";
+                            }
+                        ?>        
+                    </button>
+                </form>
+            </div>
+        </div>
+    <br>
+    <?php } ?>
+</div>
+</body>
+</html>

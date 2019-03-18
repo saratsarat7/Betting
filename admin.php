@@ -38,7 +38,7 @@ $match_ind  = "A" ;
 
 if ($result_match_count > 0)
 {
-include 'bet.html';
+    include 'bet.html';
 }
    
 	include 'logout.html';

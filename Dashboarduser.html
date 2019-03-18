@@ -1,46 +1,53 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
-</head>
+	<link rel="stylesheet" href="style.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head> -->
 <body>
-<h1>My Dashboard </h1>
-<table border="1">
+<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#USERdash">
+    <h1>My Dashboard </h1>
+</button>
+<div id="USERdash" class="collapse in"  aria-expanded="true">
+    <table border="1">
+    <?php for($x = 0; $x < $result_match_count ; $x++) {  
+        $row = $result_match->fetch_assoc();	
+    ?>
+    <tr>
+    <td>
+            <?php 
+                echo "Match ";
+                echo $row["match_id"];
+                echo " on ";
+                echo $row["time"];
+                echo " IST.";
+                echo " for $";
+                echo $row["bet_amount"];
+            ?>
+    </td>
+    <?php if ($row["team1"] == $row["team_win_id"] ) 
+                { echo '<td bgcolor="ADFF2F">' ;}  
+            else { echo '<td bgcolor="FFA500">' ;}  
+            echo $row["team1"]."</td>" ;
+            
+            if ($row["team2"] == $row["team_win_id"] ) 
+                { echo '<td bgcolor="ADFF2F">' ;}  
+            else { echo '<td bgcolor="FFA500">' ;}  
+            echo $row["team2"]."</td>" ;
 
-<?php for($x = 0; $x < $result_match_count ; $x++) {  
-      $row = $result_match->fetch_assoc();	
-?>
- <tr>
-  <td>
-        <?php 
-            echo "Match ";
-            echo $row["match_id"];
-            echo " on ";
-            echo $row["time"];
-            echo " IST.";
-			echo " for $";
-			echo $row["bet_amount"];
-        ?>
-  </td>
-  <?php if ($row["team1"] == $row["team_win_id"] ) 
-            { echo '<td bgcolor="ADFF2F">' ;}  
-        else { echo '<td bgcolor="FFA500">' ;}  
-        echo $row["team1"]."</td>" ;
-		
-        if ($row["team2"] == $row["team_win_id"] ) 
-            { echo '<td bgcolor="ADFF2F">' ;}  
-        else { echo '<td bgcolor="FFA500">' ;}  
-        echo $row["team2"]."</td>" ;
+            if ($row["win_loss_amt"] > 0) { echo '<td  bgcolor="ADFF2F">'.$row["win_loss_amt"].'</td>' ;}
+            if ($row["win_loss_amt"] == 0) { echo '<td  bgcolor="FFFFFF">'.$row["win_loss_amt"].'</td>' ;}
+            if ($row["win_loss_amt"] < 0) { echo '<td  bgcolor="FFA500">'.$row["win_loss_amt"].'</td>' ;}		
 
-		if ($row["win_loss_amt"] > 0) { echo '<td  bgcolor="ADFF2F">'.$row["win_loss_amt"].'</td>' ;}
-		if ($row["win_loss_amt"] == 0) { echo '<td  bgcolor="FFFFFF">'.$row["win_loss_amt"].'</td>' ;}
-		if ($row["win_loss_amt"] < 0) { echo '<td  bgcolor="FFA500">'.$row["win_loss_amt"].'</td>' ;}		
-
-  ?>
- </tr>
-<?php } ?>  
-</table>
-<h1></h1>
-<h1></h1>
+    ?>
+    </tr>
+    <?php } ?>  
+    </table>
+    <h1></h1>
+    <h1></h1>
+</div>
+</body>
 </html>
