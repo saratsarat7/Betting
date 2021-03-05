@@ -2,7 +2,7 @@
     "remotePath": "./public_html/PHP/betting/Upload/",
     "host": "files.000webhost.com",
     "username": "cricbid",
-    "password": "corpython",
+    "password": "",
     "port": 21,
     "secure": false,
     "protocol": "ftp",
